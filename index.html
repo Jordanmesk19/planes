@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Mejor Amiga</title>
+    <!-- Fuentes para la estética premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Dancing+Script:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 
+      ===============================================
+      AUDIO: Reemplaza "audio.mp3" con la ruta de tu canción
+      ===============================================
+    -->
+    <audio id="bg-audio" loop>
+        <source src="a.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- POPUP INICIAL: Pantalla negra introductoria -->
+    <div id="initial-popup" class="popup-overlay active black-screen">
+        <div class="popup-content">
+            <h1 class="intro-title">Para Hiromy...</h1>
+            <p class="intro-text">La distancia solo hace que mis ganas de vernos sean más fuertes, a pesar de todo lo que sientes. He preparado este espacio como nuestra pizarra personal: una promesa de todas esas aventuras y momentos que viviremos el día en que por fin nos conozcamos en persona.</p>
+            <button id="start-btn" class="btn-primary" style="font-size: 1.2rem; padding: 12px 35px; margin-top: 20px;">Ver nuestros planes ✈️💖</button>
+        </div>
+    </div>
+
+    <!-- PIZARRA PRINCIPAL (BOARD) -->
+    <div class="board-container">
+        <!-- 
+          ===============================================
+          AQUÍ COLOCAS LAS RUTAS DE TUS IMÁGENES
+          Cambia "img1.jpg" por la ruta de tu foto real.
+          También puedes cambiar el texto en data-msg.
+          ===============================================
+        -->
+        <div class="polaroid" data-msg="Compartiendo unas ricas arepas juntos" style="--r: -5deg; top: 5%; left: 8%;">
+            <!-- RUTA DE IMAGEN 1 AQUÍ -->
+            <div class="img-placeholder" style="background-image: url('img/f2.png');"></div>
+            <p class="caption">Compartiendo unas ricas arepas juntos</p>
+        </div>
+        
+        <div class="polaroid" data-msg="Cantando en un karaoke a todo pulmón una de José José" style="--r: 8deg; top: 2%; left: 40%;">
+            <!-- RUTA DE IMAGEN 2 AQUÍ -->
+            <div class="img-placeholder" style="background-image: url('img/f3.jpg');"></div>
+            <p class="caption">Cantando en un karaoke a todo pulmón una de José José</p>
+        </div>
+        
+        <div class="polaroid" data-msg="Una guerra de almohadas, no te voy a tener piedad" style="--r: -10deg; top: 6%; left: 72%;">
+            <!-- RUTA DE IMAGEN 3 AQUÍ -->
+            <div class="img-placeholder" style="background-image: url('img/f4.png');"></div>
+            <p class="caption">Una guerra de almohadas, no te voy a tener piedad</p>
+        </div>
+        
+        <div class="polaroid" data-msg="Mirando un lindo atardecer... de esos que tanto te gustan" style="--r: 12deg; top: 28%; left: 12%;">
+            <!-- RUTA DE IMAGEN 4 AQUÍ -->
+            <div class="img-placeholder" style="background-image: url('img/f1.png');"></div>
+            <p class="caption">Mirando un lindo atardecer... de esos que tanto te gustan</p>
+        </div>
+        
+        <div class="polaroid" data-msg="Comiéndonos unos ricos helados, pero no pienses que te voy a compartir del mío" style="--r: -3deg; top: 25%; left: 42%;">
+            <!-- RUTA DE IMAGEN 5 AQUÍ -->
+            <div class="img-placeholder" style="background-image: url('img/f5.png');"></div>
+            <p class="caption">Comiéndonos unos ricos helados, pero no pienses que te voy a compartir del mío</p>
+        </div>
+        
+        <div class="polaroid" data-msg="Pasando un lindo día de playa contigo" style="--r: 15deg; top: 30%; left: 70%;">
+            <!-- RUTA DE IMAGEN 6 AQUÍ -->
+            <div class="img-placeholder" style="background-image: url('img/f6.png');"></div>
+            <p class="caption">Pasando un lindo día de playa contigo</p>
+        </div>
+        
+        <div class="polaroid" data-msg="Visitando la Colonia Tovar y lo que no puede faltar: ¡chocolate!" style="--r: -8deg; top: 52%; left: 10%;">
+            <!-- RUTA DE IMAGEN 7 AQUÍ -->
+            <div class="img-placeholder" style="background-image: url('img/f7.png');"></div>
+            <p class="caption">Visitando la Colonia Tovar y lo que no puede faltar: ¡chocolate!</p>
+        </div>
+        
+        <div class="polaroid" data-msg="Te voy a ganar sin dudas" style="--r: 5deg; top: 48%; left: 38%;">
+            <!-- RUTA DE IMAGEN 8 AQUÍ -->
+            <div class="img-placeholder" style="background-image: url('img/f8.png');"></div>
+            <p class="caption">Te voy a ganar sin dudas</p>
+        </div>
+        
+        <div class="polaroid" data-msg="Y lo que no puede faltar: un abrazo fuerte" style="--r: -12deg; top: 55%; left: 75%;">
+            <!-- RUTA DE IMAGEN 9 AQUÍ -->
+            <div class="img-placeholder" style="background-image: url('img/f9.png');"></div>
+            <p class="caption">Y lo que no puede faltar: un abrazo fuerte</p>
+        </div>
+    </div>
+
+    <!-- ZOOM MODAL (Al hacer clic en una foto) -->
+    <div id="zoom-modal" class="zoom-modal">
+        <div class="zoom-content">
+            <div id="zoomed-img" class="zoomed-img"></div>
+            <p id="zoomed-msg" class="zoomed-msg"></p>
+            <button id="close-zoom-btn" class="btn-close">Volver ↩</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

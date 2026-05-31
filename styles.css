@@ -1,0 +1,288 @@
+:root {
+    --bg-overlay: rgba(0, 0, 0, 0.4);
+    --polaroid-bg: #fff;
+    --text-color: #333;
+    --accent-color: #ff6b81;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    /* Usar la imagen de pizarron como fondo fijo */
+    background-image: url('pizarron.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    overflow: hidden;
+    color: var(--text-color);
+}
+
+/* Efecto Glassmorphism para el popup */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* --- POPUP INICIAL --- */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-overlay);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.popup-overlay.black-screen {
+    background: #000;
+}
+
+.intro-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    text-shadow: 0 0 15px rgba(255, 107, 129, 0.6);
+}
+
+.intro-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #e0e0e0;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.popup-content {
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    color: white;
+    transform: translateY(20px);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.popup-overlay.active .popup-content {
+    transform: translateY(0);
+}
+
+.popup-content h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.plans-list {
+    list-style: none;
+    font-family: 'Caveat', cursive;
+    font-size: 1.8rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.plans-list li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 25px;
+}
+
+.plans-list li::before {
+    content: '📌';
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+}
+
+.popup-hint {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 129, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 107, 129, 0.6);
+    background-color: #ff526b;
+}
+
+/* --- PIZARRA Y POLAROIDS --- */
+.board-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.polaroid {
+    position: absolute;
+    background: var(--polaroid-bg);
+    padding: 10px 10px 25px 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border-radius: 2px;
+    cursor: pointer;
+    transform: rotate(var(--r));
+    transition: transform 0.3s ease, z-index 0s, box-shadow 0.3s ease;
+    width: 20vw; /* Ancho relativo a la pantalla */
+    min-width: 150px;
+    max-width: 250px;
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.1);
+    z-index: 10;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.img-placeholder {
+    width: 100%;
+    height: 180px;
+    background-color: #f5f6fa;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #ccc;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.caption {
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* --- ZOOM MODAL --- */
+.zoom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+.zoom-modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.zoom-content {
+    background: var(--polaroid-bg);
+    padding: 20px 20px 40px 20px;
+    border-radius: 5px;
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.zoom-modal.active .zoom-content {
+    transform: scale(1);
+}
+
+.zoomed-img {
+    width: 400px;
+    height: 400px;
+    max-width: 80vw;
+    max-height: 50vh;
+    background-color: #f5f6fa;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #ccc;
+}
+
+.zoomed-msg {
+    font-family: 'Caveat', cursive;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.btn-close {
+    background-color: #f1f2f6;
+    color: #2f3542;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-close:hover {
+    background-color: #dfe4ea;
+    transform: scale(1.05);
+}
+
+/* Responsividad básica */
+@media (max-width: 768px) {
+    .polaroid {
+        width: 30vw;
+    }
+}
+@media (max-width: 480px) {
+    .polaroid {
+        width: 40vw;
+    }
+}
